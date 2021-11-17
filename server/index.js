@@ -1,6 +1,6 @@
 require("dotenv").config();
-const chalk = require("chalk");
 const debug = require("debug")("twiter:server");
+const chalk = require("chalk");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -14,10 +14,13 @@ const InitializeServer = (port) =>
       debug(chalk.yellow(`Server on, lisen at ${port}`));
       resolve(server);
     });
-    server.on("error", () => {
+    server.on("error", (error) => {
+      if (error.code === "EADDRINUSE") {
+        debug(chalk.red(`El puerto${port} esta en uso`));
+      }
       debug(chalk.red("Error tring to conect the server"));
+      reject();
     });
-    reject();
   });
 
 app.use(morgan("dev"));

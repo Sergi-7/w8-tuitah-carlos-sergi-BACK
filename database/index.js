@@ -22,6 +22,7 @@ const initiateDB = (conectingString) =>
       }
 
       debug(chalk.green("in the funcking DB"));
+
       resolve();
     });
   });
