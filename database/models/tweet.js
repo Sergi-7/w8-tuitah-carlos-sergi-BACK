@@ -7,11 +7,11 @@ const tweetSchema = new Schema({
   },
   likes: {
     type: Number,
-    required: false,
+    default: 0,
   },
   date: {
     type: Date,
-    required: true,
+    default: new Date(),
   },
 });
 
