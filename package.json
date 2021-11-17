@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "dev": "nodemon index -q",
+    "start": "node .",
+    "test": "jest --watchAll --collect--coverage"
   },
   "author": "",
   "license": "ISC",
