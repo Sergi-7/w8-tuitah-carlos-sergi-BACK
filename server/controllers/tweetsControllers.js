@@ -20,9 +20,15 @@ const createTweets = async (req, res, next) => {
 };
 
 const deleteTweet = async (req, res, next) => {
-  const { id } = req.params;
-  await Tweet.findByIdAndDelete(id);
-  res.json(`${id} deleted`);
+  try {
+    const { id } = req.params;
+    await Tweet.findByIdAndDelete(id);
+    res.json(`${id} deleted`);
+  } catch (error) {
+    error.message = "Objeto no válido, espabila!";
+    error.code = 400;
+    next(error);
+  }
 };
 
 module.exports = {
