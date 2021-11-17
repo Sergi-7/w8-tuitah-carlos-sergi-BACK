@@ -19,7 +19,14 @@ const createTweets = async (req, res, next) => {
   }
 };
 
+const deleteTweet = async (req, res, next) => {
+  const { id } = req.params;
+  await Tweet.findByIdAndDelete(id);
+  res.json(`${id} deleted`);
+};
+
 module.exports = {
   getTweets,
   createTweets,
+  deleteTweet,
 };
