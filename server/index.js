@@ -1,9 +1,10 @@
 require("dotenv").config();
 const chalk = require("chalk");
-const debug = require("debug");
-const express = require("express")("twiter:server");
+const debug = require("debug")("twiter:server");
+const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const tweetsRoutes = require("./routes/tweetsRoutes");
 
 const app = express();
 
@@ -22,5 +23,7 @@ const InitializeServer = (port) =>
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
+
+app.use("/tweets", tweetsRoutes);
 
 module.exports = InitializeServer;
