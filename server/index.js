@@ -10,9 +10,10 @@ const app = express();
 
 const InitializeServer = (port) =>
   new Promise((resolve, reject) => {
+    console.log(port);
     const server = app.listen(port, () => {
-      console.log(port);
       debug(chalk.yellow(`Server on, lisen at ${port}`));
+      console.log("corriendo server");
       resolve(server);
     });
     server.on("error", (error) => {

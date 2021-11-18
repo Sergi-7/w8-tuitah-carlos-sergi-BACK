@@ -4,6 +4,7 @@ const debug = require("debug")("twiter:DB");
 
 const initiateDB = (conectingString) =>
   new Promise((resolve, reject) => {
+    console.log("dentroDB");
     mongoose.set("toJSON", {
       virtuals: true,
       transform: (doc, ret) => {
