@@ -11,6 +11,7 @@ const app = express();
 const InitializeServer = (port) =>
   new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
+      console.log(port);
       debug(chalk.yellow(`Server on, lisen at ${port}`));
       resolve(server);
     });
@@ -29,4 +30,4 @@ app.use(express.json());
 
 app.use("/tweets", tweetsRoutes);
 
-module.exports = InitializeServer;
+module.exports = { InitializeServer, app };
