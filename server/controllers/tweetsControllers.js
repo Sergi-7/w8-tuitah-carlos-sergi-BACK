@@ -31,8 +31,25 @@ const deleteTweet = async (req, res, next) => {
   }
 };
 
+const addLike = async (req, res, next) => {
+  const { id } = req.body;
+
+  try {
+    const tuit = await Tweet.findById(id);
+    tuit.likes += 1;
+    await tuit.save();
+    const tuitLiked = await Tweet.findOne({ _id: id });
+    res.json(tuitLiked);
+  } catch (error) {
+    error.code = 400;
+    error.message = "Not found!";
+    next(error);
+  }
+};
+
 module.exports = {
   getTweets,
   createTweets,
   deleteTweet,
+  addLike,
 };
