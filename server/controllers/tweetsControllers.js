@@ -47,9 +47,18 @@ const addLike = async (req, res, next) => {
   }
 };
 
+const getTweet = async (req, res) => {
+  console.log("hello");
+  const { id } = req.params;
+  console.log(id);
+  const tweets = await Tweet.findById(id);
+  res.json(tweets);
+};
+
 module.exports = {
   getTweets,
   createTweets,
   deleteTweet,
   addLike,
+  getTweet,
 };
